@@ -25,7 +25,7 @@
   <label><input type="text" id="inputTask"></label>
   <label><input type="submit" id="addTask" value="追加"></label>
 
-<script>  
+<script>
   'use strict';
   const todos = [];
   const todoList = document.getElementById('todoList');
@@ -45,10 +45,9 @@
       `;
       todoList.insertAdjacentHTML('beforeend', html);
     }
-    const deleteTodo = document.querySelectorAll('#deleteTask');
   }; 
 
-  const displayTodo = (task, todos) => {
+  const newTodo = (task, todos) => {
     console.log(todos);
     var newTodo = {content: task, finishing: false};
     todos.push(newTodo);
