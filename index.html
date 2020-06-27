@@ -45,6 +45,7 @@
       `;
       todoList.insertAdjacentHTML('beforeend', html);
     }
+    const deleteTodo = document.querySelectorAll('#deleteTask');
   }; 
 
   const newTodo = (task, todos) => {
@@ -59,11 +60,10 @@
   addTask.addEventListener('click', (evt) => {
     const task = inputTask.value;
     if (task.length) {
-      displayTodo(task, todos);
+      newTodo(task, todos);
       inputTask.value = '';
     }
-  });
- 
+  }); 
 </script>
 </body>
 </html>
