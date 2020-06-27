@@ -19,41 +19,62 @@
       </tr>
     </thead>
     <tbody id="todoList">
-      <tr>
-        <td>11</td>
-        <td>ddd</td>
-        <td><input type="submit" id="addTask" value="作業中"><input type="submit" id="deleteTask" value="削除"></td>
-      </tr>
     </tbody>
 </table>
 <h2>新規タスクの追加</h2>
-<form action="" id="app">
   <label><input type="text" id="inputTask"></label>
   <label><input type="submit" id="addTask" value="追加"></label>
-</form>
 
 <!-- タスクボタン押す→入力物を取得→入力コメントと初期状態の入ったオブジェクトを生成→配列に格納→配列展開→td、trタグなどを生成し展開物を格納 -->
 <script>
+  //削除関数はタスク追加関数に入れる。削除ボタンの変数はcreateElementでこれもタスク追加関数に格納
+  //タスク追加＆削除ごとにtrタグの中身を初期化。タスク配列からHTML展開する命令を関数に
   'use strict';
-  const deleteTask = document.getElementById('deleteTask');
-  document.getElementById('app').onsubmit = (event) => {
-    event.preventDefault();
-    const task = [];
-    const inputTask = document.getElementById('app').inputTask.value;
-    document.getElementById('app').inputTask.value = '';
-    var newTodo = {content: inputTask, finishing: false};
-    task.push(newTodo);
-    for (const [key, value] of task.entries()) {
-      console.log(key);
-      console.log(value.content)
+  const todos = [];
+  const todoList = document.getElementById('todoList');
+  const addTask = document.getElementById('addTask');
+  const inputTask = document.getElementById('inputTask');
+
+  // tr下の展開した要素をリセット
+  const resetNodes = (todoList) => {
+    console.log(todoList);
+    todoList.textContent = null;
+  }
+
+  // 配列のToDoリスト展開
+  const deployTodos = (todos) => {
+    for (const [key, value] of todos.entries()) {
       const html = `
-        <td>${key}</td>
-        <td>${value.content}</td>
-        <td><input type="submit" id="addTask" value="作業中"><input type="submit" id="deleteTask" value="削除"></td>
+        <td class="${key}">${key}</td>
+        <td class="${key}">${value.content}</td>
+        <td class="${key}"><input type="submit" id="addTask" value="作業中"><input class="${key}" type="submit" id="deleteTask" value="削除"></td>
       `;
-      document.getElementById('todoList').insertAdjacentHTML('beforeend', html);
+      todoList.insertAdjacentHTML('beforeend', html);
     }
+    const deleteTask = document.querySelectorAll('#deleteTask');
+  }; 
+
+  // Todoの新規作成→配列に格納
+  const displayTask = (task, todos) => {
+    console.log(todos);
+    var newTodo = {content: task, finishing: false};
+    todos.push(newTodo);
+    console.log(todos);
+    // リセット
+    resetNodes(todoList);
+    deployTodos(todos);
   };
+
+  // 追加するボタンのイベント(空だと何も起こらない)
+  addTask.addEventListener('click', (evt) => {
+    const task = inputTask.value;
+    if (task.length) {
+      displayTask(task, todos);
+      inputTask.value = '';
+    }
+  });
+ 
+//削除ボタンイベント：押される→押された配列の要素削除→deployTodos実行
 </script>
 </body>
 </html>
