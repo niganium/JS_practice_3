@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>ToDoリスト</h1>
+  <label><input type="radio" name="taksStatus" id="all" checked>すべて</label>
+  <label><input type="radio" name="taksStatus" id="working">作業中</label>
+  <label><input type="radio" name="taksStatus" id="finished">完了</label>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>コメント</th>
+        <th>状態</th>
+      </tr>
+    </thead>
+    <tbody id="todoList">
+      <tr>
+        <td>11</td>
+        <td>ddd</td>
+        <td><input type="submit" id="addTask" value="作業中"><input type="submit" id="deleteTask" value="削除"></td>
+      </tr>
+    </tbody>
+</table>
+<h2>新規タスクの追加</h2>
+<form action="" id="app">
+  <label><input type="text" id="inputTask"></label>
+  <label><input type="submit" id="addTask" value="追加"></label>
+</form>
+
+<!-- タスクボタン押す→入力物を取得→入力コメントと初期状態の入ったオブジェクトを生成→配列に格納→配列展開→td、trタグなどを生成し展開物を格納 -->
+<script>
+  // 'use strict';
+  // const deleteTask = document.getElementById('deleteTask');
+  // document.getElementById('app').onsubmit = (event) => {
+  //   event.preventDefault();
+  //   const task = [];
+  //   const inputTask = document.getElementById('app').inputTask.value;
+  //   document.getElementById('app').inputTask.value = '';
+  //   var newTodo = {content: inputTask, finishing: false};
+  //   task.push(newTodo);
+  //   for (const [key, value] of task.entries()) {
+  //     console.log(key);
+  //     console.log(value.content)
+  //     const html = `
+  //       <td>${key}</td>
+  //       <td>${value.content}</td>
+  //       <td><input type="submit" id="addTask" value="作業中"><input type="submit" id="deleteTask" value="削除"></td>
+  //     `;
+  //     document.getElementById('todoList').insertAdjacentHTML('beforeend', html);
+  //   }
+  // };
+</script>
+</body>
+</html>
