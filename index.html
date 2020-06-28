@@ -55,7 +55,6 @@
       tdKey.textContent = key;
       tdTask.textContent = value.content;
       taskDelete.id = key;
-      taskStatus.id = key;
       taskStatus.setAttribute('type', 'submit');
       taskStatus.setAttribute('value', '作業中');
       taskDelete.setAttribute('type', 'submit');
@@ -79,8 +78,8 @@
       });
       // 課題2削除ボタン
       taskDelete.addEventListener('click', (evt) => {
-        let deleteTaskId = taskDelete.id;
-        todos.splice(deleteTaskId, 1);
+        todos.splice(key, 1);
+        // リセット
         resetNodes(todoList);
       });
     }
