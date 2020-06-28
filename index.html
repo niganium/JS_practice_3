@@ -52,7 +52,7 @@
       tdKey.className = 'id';
       tdKey.textContent = key;
       tdTask.textContent = value.content;
-      tdStatus.className = key;
+      taskDelete.id = key;
       taskStatus.setAttribute('type', 'submit');
       taskDelete.setAttribute('type', 'submit');
       taskDelete.setAttribute('value', '削除');
@@ -62,15 +62,20 @@
       tr.appendChild(tdTask);
       tr.appendChild(tdStatus);
       todoList.appendChild(tr);
+
+      // 削除ボタン
+      taskDelete.addEventListener('click', (evt) => {
+        let deleteTaskId = taskDelete.id;
+        todos.splice(deleteTaskId, 1);
+        resetNodes(todoList);
+      });
     }
   }; 
 
   // Todoの新規作成→配列に格納
   const newTodo = (task, todos) => {
-    console.log(todos);
     let newTodo = { content: task, finishing: false };
     todos.push(newTodo);
-    console.log(todos);
     // リセット
     resetNodes(todoList);
     deployTodo(todos);
