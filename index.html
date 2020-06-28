@@ -38,6 +38,8 @@
   // tr下の展開した要素をリセット
   const resetNodes = (todoList) => {
     todoList.textContent = null;
+    // 再度配列展開
+    deployTodo(todos);
   };
 
   // 配列のToDoリスト展開
@@ -53,7 +55,9 @@
       tdKey.textContent = key;
       tdTask.textContent = value.content;
       taskDelete.id = key;
+      taskStatus.id = key;
       taskStatus.setAttribute('type', 'submit');
+      taskStatus.setAttribute('value', '作業中');
       taskDelete.setAttribute('type', 'submit');
       taskDelete.setAttribute('value', '削除');
       tdStatus.appendChild(taskStatus);
@@ -63,7 +67,17 @@
       tr.appendChild(tdStatus);
       todoList.appendChild(tr);
 
-      // 削除ボタン
+      // 課題3状態変更ボタン
+      taskStatus.addEventListener('click', (evt) => {
+        // タスクボタンに付与されているidを取得→配列内のfinishingのt/f反転→ボタン書き換え
+        value.finishing = !value.finishing
+        if (value.finishing === false) {
+          taskStatus.value = '作業中'
+        } else {
+          taskStatus.value = '完了'
+        }
+      });
+      // 課題2削除ボタン
       taskDelete.addEventListener('click', (evt) => {
         let deleteTaskId = taskDelete.id;
         todos.splice(deleteTaskId, 1);
@@ -78,7 +92,6 @@
     todos.push(newTodo);
     // リセット
     resetNodes(todoList);
-    deployTodo(todos);
   };
 
   // 追加するイベント(空だと何も起こらない)
@@ -90,7 +103,8 @@
     }
   });
  
-//削除ボタンイベント：押される→押された配列の要素削除→deployTodos実行
+  //全ての場合全データをdeployTodo、完了の場合trueのデータのみを新規配列で格納deployTodo、false~
+
 </script>
 </body>
 </html>
