@@ -55,12 +55,12 @@ const deployTodo = (todos) => {
     //     taskStatus.value = '完了'
     //   }
     // });
-    //   // 課題2削除ボタン
-    // taskDelete.addEventListener('click', (evt) => {
-    //   todos.splice(key, 1);
-    //   // リセット
-    //   resetNodes(todoList);
-    // });
+      // 課題2削除ボタン
+    taskDelete.addEventListener('click', (evt) => {
+      todos.splice(key, 1);
+      // リセット
+      resetNodes(todoList);
+    });
   }
 }; 
 
