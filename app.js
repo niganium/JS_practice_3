@@ -45,22 +45,27 @@ const deployTodo = (todos) => {
     tr.appendChild(tdStatus);
     todoList.appendChild(tr);
 
-    // // 課題3状態変更ボタン
-    // taskStatus.addEventListener('click', (evt) => {
-    // // タスクボタンに付与されているidを取得→配列内のfinishingのt/f反転→ボタン書き換え
-    //   value.finishing = !value.finishing
-    //   if (value.finishing === false) {
-    //     taskStatus.value = '作業中'
-    //   } else {
-    //     taskStatus.value = '完了'
-    //   }
-    // });
-    //   // 課題2削除ボタン
-    // taskDelete.addEventListener('click', (evt) => {
-    //   todos.splice(key, 1);
-    //   // リセット
-    //   resetNodes(todoList);
-    // });
+    // チェックボタンによって要素を非表示
+    if (swicthFinished.checked == true) {
+      hideNode(key);
+    }
+
+    // 課題3状態変更ボタン
+    taskStatus.addEventListener('click', (evt) => {
+    // タスクボタンに付与されているidを取得→配列内のfinishingのt/f反転→ボタン書き換え
+      value.finishing = !value.finishing
+      if (value.finishing === false) {
+        taskStatus.value = '作業中'
+      } else {
+        taskStatus.value = '完了'
+      }
+    });
+      // 課題2削除ボタン
+    taskDelete.addEventListener('click', (evt) => {
+      todos.splice(key, 1);
+      // リセット
+      resetNodes(todoList);
+    });
   }
 }; 
 
@@ -82,32 +87,32 @@ addTask.addEventListener('click', (evt) => {
 });
 
 
-// // 第3-４課題
-// const hideNode = (node) => {
-//   // 指定した要素を非表示(HTML_COLLECTIONは[]に格納されてるので[0]で展開{あまり良さげではない})
-//   document.getElementsByClassName(`todo_${node}`)[0].style.display = "none";
-// };
+// 第3-４課題
+const hideNode = (node) => {
+  // 指定した要素を非表示(HTML_COLLECTIONは[]に格納されてるので[0]で展開{あまり良さげではない})
+  document.getElementsByClassName(`todo_${node}`)[0].style.display = "none";
+};
 
-// swicthAll.addEventListener('click', (evt) => {
-//   // 非表示要素を解体→再展開
-//   resetNodes(todoList);
-// });
+swicthAll.addEventListener('click', (evt) => {
+  // 非表示要素を解体→再展開
+  resetNodes(todoList);
+});
 
-// swicthWorking.addEventListener('click', (evt) => {
-//   // 表示したい要素が隠れている場合があるので非表示要素を解体→再展開
-//   resetNodes(todoList);
-//   for (var i=0; i<todos.length; i++) {
-//     if (todos[i].finishing === true) {
-//       hideNode(i)
-//     }
-//   }
-// });
-// swicthFinished.addEventListener('click', (evt) => {
-//   // 表示したい要素が隠れている場合があるので非表示要素を解体→再展開
-//   resetNodes(todoList);
-//   for (var i=0; i<todos.length; i++) {
-//     if (todos[i].finishing === false) {
-//       hideNode(i)
-//     }
-//   }
-// });
+swicthWorking.addEventListener('click', (evt) => {
+  // 表示したい要素が隠れている場合があるので非表示要素を解体→再展開
+  resetNodes(todoList);
+  for (var i=0; i<todos.length; i++) {
+    if (todos[i].finishing === true) {
+      hideNode(i)
+    }
+  }
+});
+swicthFinished.addEventListener('click', (evt) => {
+  // 表示したい要素が隠れている場合があるので非表示要素を解体→再展開
+  resetNodes(todoList);
+  for (var i=0; i<todos.length; i++) {
+    if (todos[i].finishing === false) {
+      hideNode(i)
+    }
+  }
+});
