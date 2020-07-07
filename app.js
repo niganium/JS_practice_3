@@ -45,6 +45,11 @@ const deployTodo = (todos) => {
     tr.appendChild(tdStatus);
     todoList.appendChild(tr);
 
+    // チェックボタンによって要素を非表示
+    if (swicthFinished.checked == true) {
+      hideNode(key);
+    }
+
     // 課題3状態変更ボタン
     taskStatus.addEventListener('click', (evt) => {
     // タスクボタンに付与されているidを取得→配列内のfinishingのt/f反転→ボタン書き換え
